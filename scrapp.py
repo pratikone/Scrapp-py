@@ -11,7 +11,7 @@ import os
 os.mkdir(os.getcwd()+"/xkcd")
 os.chdir(os.getcwd()+"/xkcd")
 
-prev="/822/"
+prev=""
 for  i in range(500):
 	page=urllib2.urlopen(str+prev)
 	soup=BeautifulSoup(page)
