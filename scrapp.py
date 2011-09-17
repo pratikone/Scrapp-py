@@ -1,0 +1,43 @@
+print "Author:pratikone"
+print "********************************"
+print "XKCD Scrapp-py"
+from BeautifulSoup import BeautifulSoup
+import urllib2
+str="http://www.xkcd.com"
+page=urllib2.urlopen(str)
+soup=BeautifulSoup(page)
+import os
+
+os.mkdir(os.getcwd()+"/xkcd")
+os.chdir(os.getcwd()+"/xkcd")
+
+prev="/822/"
+for  i in range(500):
+	page=urllib2.urlopen(str+prev)
+	soup=BeautifulSoup(page)
+        print prev
+	img=soup('img')[1]
+        print img['alt']
+        pic_src=img['src']
+        
+        #saving into a folder
+        #opening page to read image into a file
+        opene1=urllib2.build_opener()
+	page1=opene1.open(pic_src)
+	my_picture=page1.read()
+	
+	#print my_picture
+	fname=soup.h3.renderContents()
+	fname=fname[-5:]
+	filename=os.getcwd()+fname.encode('ascii')
+	filename=filename[0:len(filename)-1]+".png"
+	print filename
+	fout=open(filename,"wb")
+	fout.write(my_picture)
+	fout.close()
+        #prev image
+	prev=soup.findAll(accesskey="p")[0]['href']
+	print i
+	
+
+print "Done"
