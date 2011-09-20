@@ -29,7 +29,7 @@ for  i in range(10):
 	
 	#print my_picture
 	fname=soup.h3.renderContents()
-	fname=fname[45:]  #[-5:] fails for non 3-digit numbers (bug removed)
+	fname=fname[45:]  #[-5:] fails for non 3-digit numbers
 	filename=os.getcwd()+fname.encode('ascii')
 	filename=filename[0:len(filename)-1]+".png"
 	print filename
